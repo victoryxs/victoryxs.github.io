@@ -505,6 +505,7 @@ td {
 .icon-archives,
 .icon-tags,
 .icon-about,
+.icon-guestbook,
 .icon-feed {
   font-size: 24px;
   color: #000;
@@ -532,6 +533,9 @@ td {
 }
 .icon-about:before {
   content: "\e612";
+}
+.icon-guestbook:before {
+  content: "\e601";
 }
 .icon-feed:before {
   content: "\e62b";
@@ -1135,7 +1139,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c68805;
+  background: #262dff;
 }
 .sidebar-nav {
   margin: 0;
