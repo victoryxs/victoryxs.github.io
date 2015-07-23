@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="Blog,Life,Work" />
+  <meta name="keywords" content="IntelliJ IDEA,tools," />
 
 
 
@@ -47,7 +47,7 @@
 
 
 
-  <title> 标签: tools // Just a Blog But a Life </title>
+  <title> IntelliJ IDEA14 教程 // Just a Blog But a Life </title>
 </head>
 
 <body>
@@ -61,7 +61,7 @@
   </div>
 <![endif]-->
 
-  <div class="container one-column ">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <!-- add Fork me on Github -->
@@ -177,106 +177,154 @@
         <div id="content" class="content">
           
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        tools
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
 
-  <div class="post post-type-normal">
+  <div class="post post-type-normal ">
     <div class="post-header">
 
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/23/IntelliJ-IDEA14-教程/">
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               IntelliJ IDEA14 教程
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 07-23 </span>
-      </div>
-
-    </div>
-  </div>
-
-
-    
+            
+          
+        </h1>
       
 
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/22/iterm2-zsh-oh-my-zsh-配置/">
-              iterm2+zsh+oh my zsh 配置
-            </a>
-        
-      </div>
-
+      
       <div class="post-meta">
-        <span class="post-time"> 07-22 </span>
+        <span class="post-time">
+          发表于 2015-07-23
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/tools/">tools</a>
+
+              
+              
+
+            
+          </span>
+        
+
+      <span class="post-count">
+      &nbsp; | &nbsp;字数470
+      </span>
+
+      <span id="busuanzi_container_page_pv">
+      &nbsp; | &nbsp; 热度<span id="busuanzi_value_page_pv"></span>°C
+      </span>
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/07/23/IntelliJ-IDEA14-教程/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/23/IntelliJ-IDEA14-教程/"></span>
+            </a>
+          </span>
+          
+        
       </div>
-
-    </div>
-  </div>
-
-
-    
       
 
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/10/Mac软件推荐/">
-              Mac软件推荐（一）
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 07-10 </span>
-      </div>
-
     </div>
-  </div>
-
-
     
+
+
+    <div class="post-body">
+
+      
       
 
-  <div class="post post-type-normal">
-    <div class="post-header">
+      
+        <h2 id="参考文献">参考文献</h2><blockquote>
+<p><a href="https://www.jetbrains.com/idea/help/basics-and-installation.html" target="_blank" rel="external">官方文档</a></p>
+</blockquote>
+<h2 id="安装篇">安装篇</h2><ol>
+<li>在<a href="https://www.jetbrains.com/idea/download/index.html" target="_blank" rel="external">JetBrains官网</a>下载最新版的IDEA 14,主要有社区版和旗舰版.强烈推荐旗舰版，福利码生成器源码见<a href="http://pan.baidu.com/s/1i38d23F" target="_blank" rel="external">百度网盘</a></li>
+<li>安装<code>.dmg</code>文件.</li>
+<li><p>安装Apple Java 6或者Oracle Java7/8.</p>
+<blockquote>
+<p><strong>注意:</strong> 对于Java 7/8用户来说，复制<code>/Applications/IntelliJ IDEA14.app/Contents/bin</code>下的<code>idea.properties</code>到<code>~/Library/Preferences/IntelliJ IDEA14</code>下；修改<code>idea.properties</code>中参数<code>JVMVersion</code>的值为<code>1.7*</code>或者<code>1.8*</code>。</p>
+</blockquote>
+</li>
+<li><p>启动.</p>
+</li>
+</ol>
+<h2 id="相关概念">相关概念</h2><h3 id="工程（Project）">工程（Project）</h3><blockquote>
+<p>A project is an organizational unit that represents a complete software solution.</p>
+</blockquote>
+<p><strong>目录格式</strong></p>
+<p><code>.idea</code>目录下包含一系列的XML格式的配置文件，例如：<code>comilper.xml</code> <code>encodings.xml</code> <code>modules.xml</code>根据命名代表工程的具体的功能的配置参数（名字、地址等）。</p>
+<p><code>worksapce.xml</code>保存了你的个人配置信息，包括你系统、VCS和历史设置的信息，这个文件不能被共享。</p>
+<p><strong>文件格式</strong></p>
+<p><code>.ipr</code>保存了核心的工程信息。</p>
+<p><code>.iws</code>保存了个人的工作空间设置，该文件类型不能被版本控制软件控制。</p>
+<h3 id="模块">模块</h3><blockquote>
+<p>A module is a discrete unit of functionality which you can compile, run, test and debug independently.</p>
+</blockquote>
+<p><code>.iml</code>模块文件存放一个模块的配置信息，被放置在一个<code>Content Root</code>下。可以被共享。</p>
 
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/09/FoldingText工具/">
-              FoldingText工具
-            </a>
-        
-      </div>
+      
+    </div>
 
-      <div class="post-meta">
-        <span class="post-time"> 07-09 </span>
-      </div>
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IntelliJ-IDEA/"> #IntelliJ IDEA </a>
+          
+            <a href="/tags/tools/"> #tools </a>
+          
+        </div>
+      
 
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/23/每日一题-add-Binary/">每日一题:add Binary</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/22/iterm2-zsh-oh-my-zsh-配置/">iterm2+zsh+oh my zsh 配置</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </div>
   </div>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+
+    
+      <div class="comments" id="comments">
+        
+          <div class="ds-thread" data-thread-key="2015/07/23/IntelliJ-IDEA14-教程/"
+               data-title="IntelliJ IDEA14 教程" data-url="http://yoursite.com/2015/07/23/IntelliJ-IDEA14-教程/">
+          </div>
+        
+      </div>
     
   </div>
 
-  
 
         </div>
 
@@ -297,6 +345,15 @@
   <div id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
       
 
       <div class="site-overview">
@@ -374,6 +431,17 @@
       </div>
 
       
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装篇"><span class="nav-number">2.</span> <span class="nav-text">安装篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">3.</span> <span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工程（Project）"><span class="nav-number">3.1.</span> <span class="nav-text">工程（Project）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块"><span class="nav-number">3.2.</span> <span class="nav-text">模块</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
+      
 
     </div>
   </div>
@@ -440,12 +508,6 @@
 
   
   
-  
-    <script type="text/javascript">
-      postMotionOptions = {stagger: 100, drag: true};
-    </script>
-  
-
 
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
@@ -465,6 +527,145 @@
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
 
   <script type="text/javascript">
     $(document).ready(function () {
@@ -498,6 +699,26 @@
 
 
   
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"victoryxs"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
 
   
   

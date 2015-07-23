@@ -47,7 +47,7 @@
 
 
 
-  <title> 标签: tools // Just a Blog But a Life </title>
+  <title> 归档 // Just a Blog But a Life </title>
 </head>
 
 <body>
@@ -61,7 +61,7 @@
   </div>
 <![endif]-->
 
-  <div class="container one-column ">
+  <div class="container one-column  page-archive ">
     <div class="headband"></div>
 
     <!-- add Fork me on Github -->
@@ -178,14 +178,31 @@
           
 
   <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        tools
-        <small>标签</small>
-      </h2>
-    </div>
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 7 篇日志。 继续努力。
+    </span>
 
     
+
+      
+      
+      
+
+      
+        
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+        </div>
+      
+      
+
       
 
   <div class="post post-type-normal">
@@ -193,65 +210,30 @@
 
       <div class="post-title">
         
-            <a class="post-title-link" href="/2015/07/23/IntelliJ-IDEA14-教程/">
-              IntelliJ IDEA14 教程
+            <a class="post-title-link" href="/2015/07/09/利用github和hexo搭建静态博客/">
+              利用github和hexo搭建静态博客
             </a>
         
       </div>
 
       <div class="post-meta">
-        <span class="post-time"> 07-23 </span>
+        <span class="post-time"> 07-09 </span>
       </div>
 
     </div>
   </div>
 
 
+
     
+
+      
+      
       
 
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/22/iterm2-zsh-oh-my-zsh-配置/">
-              iterm2+zsh+oh my zsh 配置
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 07-22 </span>
-      </div>
-
-    </div>
-  </div>
-
-
-    
+      
       
 
-  <div class="post post-type-normal">
-    <div class="post-header">
-
-      <div class="post-title">
-        
-            <a class="post-title-link" href="/2015/07/10/Mac软件推荐/">
-              Mac软件推荐（一）
-            </a>
-        
-      </div>
-
-      <div class="post-meta">
-        <span class="post-time"> 07-10 </span>
-      </div>
-
-    </div>
-  </div>
-
-
-    
       
 
   <div class="post post-type-normal">
@@ -273,10 +255,17 @@
   </div>
 
 
+
     
+
   </div>
 
   
+  <div class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/2015/07/">&laquo;</a><a class="page-number" href="/archives/2015/07/">1</a><span class="page-number current">2</span>
+  </div>
+
+
 
         </div>
 
@@ -465,6 +454,12 @@
   <script type="text/javascript" src="/js/search-toggle.js"></script>
 
   
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
+
 
   <script type="text/javascript">
     $(document).ready(function () {
