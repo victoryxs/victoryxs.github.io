@@ -47,7 +47,7 @@
 
 
 
-  <title> 每日一题:Valid-Parentheses // Just a Blog But a Life </title>
+  <title> 每日一题:Compare-Version-Numbers // Just a Blog But a Life </title>
 </head>
 
 <body>
@@ -189,7 +189,7 @@
           
           
             
-              每日一题:Valid-Parentheses
+              每日一题:Compare-Version-Numbers
             
           
         </h1>
@@ -198,7 +198,7 @@
       
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-07-24
+          发表于 2015-07-28
         </span>
 
         
@@ -215,7 +215,7 @@
         
 
       <span class="post-count">
-      &nbsp; | &nbsp;字数2,205
+      &nbsp; | &nbsp;字数2,054
       </span>
 
       <span id="busuanzi_container_page_pv">
@@ -226,8 +226,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/07/24/每日一题-Valid-Parentheses/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/24/每日一题-Valid-Parentheses/"></span>
+            <a href="/2015/07/28/每日一题-Compare-Version-Numbers/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/28/每日一题-Compare-Version-Numbers/"></span>
             </a>
           </span>
           
@@ -246,65 +246,15 @@
 
       
         <h2 id="题目">题目</h2><blockquote>
-<p>Given a string containing just the characters <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code>, <code>&#39;{&#39;</code>, <code>&#39;}&#39;</code>, <code>&#39;[&#39;</code> and <code>&#39;]&#39;</code>, determine if the input string is valid.</p>
-<p>The brackets must close in the correct order, <code>&quot;()&quot;</code> and <code>&quot;()[]{}&quot;</code> are all valid but <code>&quot;(]&quot;</code> and <code>&quot;([)]&quot;</code> are not.</p>
+<p>Compare two version numbers version1 and version2.<br>If version1 &gt; version2 return 1, if version1 &lt; version2 return -1, otherwise return 0.</p>
+<p>You may assume that the version strings are non-empty and contain only digits and the . character.<br>The . character does not represent a decimal point and is used to separate number sequences.<br>For instance, 2.5 is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
+<p>Here is an example of version numbers ordering:</p>
+<p><code>0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</code></p>
 </blockquote>
-<h2 id="解答">解答</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> boolean <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Character&gt; <span class="built_in">stack</span> = <span class="keyword">new</span> Stack&lt;Character&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> ch = s.charAt(i);</span><br><span class="line">            <span class="keyword">switch</span> (ch)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&#123;'</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'('</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'['</span>: <span class="built_in">stack</span>.push(ch) ; <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">')'</span>: <span class="keyword">if</span>(<span class="built_in">stack</span>.isEmpty() || <span class="built_in">stack</span>.pop().charValue() != <span class="string">'('</span>) <span class="keyword">return</span> <span class="keyword">false</span>; <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">']'</span>: <span class="keyword">if</span>(<span class="built_in">stack</span>.isEmpty() || <span class="built_in">stack</span>.pop().charValue() != <span class="string">'['</span>) <span class="keyword">return</span> <span class="keyword">false</span>; <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&#125;'</span>: <span class="keyword">if</span>(<span class="built_in">stack</span>.isEmpty() || <span class="built_in">stack</span>.pop().charValue() != <span class="string">'&#123;'</span>) <span class="keyword">return</span> <span class="keyword">false</span>; <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">stack</span>.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="注解">注解</h2><p>利用堆栈的特性，每次遇到<code>{</code> <code>[</code> <code>(</code>就入栈，遇到<code>}</code> <code>]</code> <code>)</code>就出栈，匹配当前的字符。</p>
-<p>特别注意下面两种情况：</p>
-<ul>
-<li><code>input: &quot;]]]&quot;</code>，这个通过遇到相对应字符时判断堆栈是否为空，为空就直接返回<code>false</code>.</li>
-<li><code>input: &quot;[[[&quot;</code>，这个通过最后判断堆栈是否为空，一旦不为空就返回<code>false</code>.</li>
-</ul>
-<h2 id="反思">反思</h2><ul>
-<li><p>Java集合类中Stack的用法:</p>
-  <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.util;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"><span class="comment">// 版本ID。这个用于版本升级控制，这里不须理会！</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1224463164541339165</span>L;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// push函数：将元素存入栈顶</span></span><br><span class="line"><span class="keyword">public</span> <span class="function">E <span class="title">push</span><span class="params">(E item)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将元素存入栈顶。</span></span><br><span class="line">    <span class="comment">// addElement()的实现在Vector.java中</span></span><br><span class="line">    addElement(item);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> item;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// pop函数：返回栈顶元素，并将其从栈中删除</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function">E <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    E    obj;</span><br><span class="line">    <span class="keyword">int</span>    len = size();</span><br><span class="line">    </span><br><span class="line">    obj = peek();</span><br><span class="line">    <span class="comment">// 删除栈顶元素，removeElementAt()的实现在Vector.java中</span></span><br><span class="line">    removeElementAt(len - <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// peek函数：返回栈顶元素，不执行删除操作</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function">E <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>    len = size();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">    <span class="comment">// 返回栈顶元素，elementAt()具体实现在Vector.java中</span></span><br><span class="line">    <span class="function"><span class="keyword">return</span> <span class="title">elementAt</span><span class="params">(len - <span class="number">1</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 栈是否为空</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> size() == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 查找“元素o”在栈中的位置：由栈底向栈顶方向数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取元素索引，elementAt()具体实现在Vector.java中</span></span><br><span class="line">    <span class="keyword">int</span> i = lastIndexOf(o);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> size() - i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java包装类</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">基本类型</th>
-<th style="text-align:center">包装类</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">byte</td>
-<td style="text-align:center">Byte</td>
-</tr>
-<tr>
-<td style="text-align:left">boolean</td>
-<td style="text-align:center">Boolean</td>
-</tr>
-<tr>
-<td style="text-align:left">short</td>
-<td style="text-align:center">Short</td>
-</tr>
-<tr>
-<td style="text-align:left">char</td>
-<td style="text-align:center">Character</td>
-</tr>
-<tr>
-<td style="text-align:left">int</td>
-<td style="text-align:center">Integer</td>
-</tr>
-<tr>
-<td style="text-align:left">long</td>
-<td style="text-align:center">Long</td>
-</tr>
-<tr>
-<td style="text-align:left">float</td>
-<td style="text-align:center">Float</td>
-</tr>
-<tr>
-<td style="text-align:left">double</td>
-<td style="text-align:center">Double</td>
-</tr>
-</tbody>
-</table>
+<h2 id="解答">解答</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public <span class="keyword">int</span> compareVersion(String version1, String version2) &#123;</span><br><span class="line">        String[] v1 = version1.<span class="keyword">split</span>(<span class="string">"\\."</span>);</span><br><span class="line">        String[] v2 = version2.<span class="keyword">split</span>(<span class="string">"\\."</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">length</span> = (v1.<span class="keyword">length</span> &gt; v2.<span class="keyword">length</span>) ? v1.<span class="keyword">length</span> : v2.<span class="keyword">length</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="keyword">length</span>; i++)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> num1 = (v1.<span class="keyword">length</span> - <span class="number">1</span> &lt; i) ? <span class="number">0</span> : Integer.parseInt(v1[i]);</span><br><span class="line">            <span class="keyword">int</span> num2 = (v2.<span class="keyword">length</span> - <span class="number">1</span> &lt; i) ? <span class="number">0</span> : Integer.parseInt(v2[i]);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(num1 &gt; num2)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(num2 &gt; num1)&#123;</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注解">注解</h2><p>先根据<code>.</code>切词，然后依次比较切词数组对应位大小(通过转换为整数).</p>
+<h2 id="反思">反思</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">int</span> <span class="title">parseInt</span><span class="params">(String s)</span> <span class="keyword">throws</span> NumberFormatException   </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">return</span> <span class="title">parseInt</span><span class="params">(s,<span class="number">10</span>)</span></span>;  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">static</span> <span class="type">int</span> parseInt(<span class="type">String</span> s, <span class="type">int</span> radix)throws <span class="type">NumberFormatException</span>  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> (s == null) &#123;  </span><br><span class="line">        throw new <span class="type">NumberFormatException</span>(<span class="string">"null"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (radix &lt; <span class="type">Character</span>.<span class="type">MIN_RADIX</span>) &#123;          </span><br><span class="line">        //<span class="type">Character</span>.<span class="type">MIN_RADIX</span>=<span class="number">2</span>  </span><br><span class="line">        throw new <span class="type">NumberFormatException</span>(<span class="string">"radix "</span> + radix +  </span><br><span class="line">                    <span class="string">" less than Character.MIN_RADIX"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (radix &gt; <span class="type">Character</span>.<span class="type">MAX_RADIX</span>) &#123;          </span><br><span class="line">    //<span class="type">Character</span>.<span class="type">MAN_RADIX</span>=<span class="number">36</span>  </span><br><span class="line">        throw new <span class="type">NumberFormatException</span>(<span class="string">"radix "</span> + radix +  </span><br><span class="line">                    <span class="string">" greater than Character.MAX_RADIX"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="type">int</span> <span class="literal">result</span> = <span class="number">0</span>;  </span><br><span class="line">    boolean negative = <span class="literal">false</span>;  </span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, max = s.length();  </span><br><span class="line">    <span class="type">int</span> limit;  </span><br><span class="line">    <span class="type">int</span> multmin;  </span><br><span class="line">    <span class="type">int</span> digit;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> (max &gt; <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (s.charAt(<span class="number">0</span>) == '-') &#123;  </span><br><span class="line">        negative = <span class="literal">true</span>;  </span><br><span class="line">        limit = <span class="type">Integer</span>.<span class="type">MIN_VALUE</span>;  </span><br><span class="line">        i++;  </span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        limit = -<span class="type">Integer</span>.<span class="type">MAX_VALUE</span>;  </span><br><span class="line">     &#125;  </span><br><span class="line">     multmin = limit / radix;  </span><br><span class="line">     <span class="keyword">if</span> (i &lt; max) &#123;  </span><br><span class="line">        digit = <span class="type">Character</span>.digit(s.charAt(i++),radix);  </span><br><span class="line">        <span class="keyword">if</span> (digit &lt; <span class="number">0</span>) &#123;  </span><br><span class="line">            throw <span class="type">NumberFormatException</span>.forInputString(s);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            <span class="literal">result</span> = -digit;  </span><br><span class="line">        &#125;  </span><br><span class="line">     &#125;  </span><br><span class="line">     <span class="keyword">while</span> (i &lt; max) &#123;  </span><br><span class="line">     // <span class="type">Accumulating</span> negatively avoids surprises near <span class="type">MAX_VALUE</span>  </span><br><span class="line">        digit = <span class="type">Character</span>.digit(s.charAt(i++),radix);  </span><br><span class="line">        <span class="keyword">if</span> (digit &lt; <span class="number">0</span>) &#123;  </span><br><span class="line">            throw <span class="type">NumberFormatException</span>.forInputString(s);  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">result</span> &lt; multmin) &#123;  </span><br><span class="line">            throw <span class="type">NumberFormatException</span>.forInputString(s);  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="literal">result</span> *= radix;  </span><br><span class="line">        <span class="keyword">if</span> (<span class="literal">result</span> &lt; limit + digit) &#123;  </span><br><span class="line">            throw <span class="type">NumberFormatException</span>.forInputString(s);  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="literal">result</span> -= digit;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        throw <span class="type">NumberFormatException</span>.forInputString(s);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">if</span> (negative) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">1</span>) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;    /* <span class="type">Only</span> got <span class="string">"-"</span> */  </span><br><span class="line">        throw <span class="type">NumberFormatException</span>.forInputString(s);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> -<span class="literal">result</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -324,13 +274,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/25/每日一题-Valid-Palindrome/">每日一题:Valid-Palindrome</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/24/每日一题-ZigZag-Conversion/">每日一题:ZigZag-Conversion</a>
+              <a href="/2015/07/27/每日一题-Length-of-Last-Word/">每日一题:Length-of-Last-Word</a>
             
           </div>
         </div>
@@ -350,8 +298,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/07/24/每日一题-Valid-Parentheses/"
-               data-title="每日一题:Valid-Parentheses" data-url="http://yoursite.com/2015/07/24/每日一题-Valid-Parentheses/">
+          <div class="ds-thread" data-thread-key="2015/07/28/每日一题-Compare-Version-Numbers/"
+               data-title="每日一题:Compare-Version-Numbers" data-url="http://yoursite.com/2015/07/28/每日一题-Compare-Version-Numbers/">
           </div>
         
       </div>
