@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="IntelliJ IDEA,tools," />
+  <meta name="keywords" content="code,leetcode," />
 
 
 
@@ -47,7 +47,7 @@
 
 
 
-  <title> IntelliJ IDEA14 教程 // Just a Blog But a Life </title>
+  <title> 每日一题:Implement-strStr // Just a Blog But a Life </title>
 </head>
 
 <body>
@@ -189,7 +189,7 @@
           
           
             
-              IntelliJ IDEA14 教程
+              每日一题:Implement-strStr
             
           
         </h1>
@@ -198,14 +198,14 @@
       
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-07-23
+          发表于 2015-07-30
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/tools/">tools</a>
+              <a href="/categories/code/">code</a>
 
               
               
@@ -215,7 +215,7 @@
         
 
       <span class="post-count">
-      &nbsp; | &nbsp;字数470
+      &nbsp; | &nbsp;字数484
       </span>
 
       <span id="busuanzi_container_page_pv">
@@ -226,8 +226,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/07/23/IntelliJ-IDEA14-教程/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/23/IntelliJ-IDEA14-教程/"></span>
+            <a href="/2015/07/30/每日一题-Implement-strStr/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/30/每日一题-Implement-strStr/"></span>
             </a>
           </span>
           
@@ -245,33 +245,12 @@
       
 
       
-        <h2 id="参考文献">参考文献</h2><blockquote>
-<p><a href="https://www.jetbrains.com/idea/help/basics-and-installation.html" target="_blank" rel="external">官方文档</a></p>
+        <h2 id="题目">题目</h2><blockquote>
+<p>Implement strStr().</p>
+<p>Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</p>
 </blockquote>
-<h2 id="安装篇">安装篇</h2><ol>
-<li>在<a href="https://www.jetbrains.com/idea/download/index.html" target="_blank" rel="external">JetBrains官网</a>下载最新版的IDEA 14,主要有社区版和旗舰版.强烈推荐旗舰版，福利码生成器源码见<a href="http://pan.baidu.com/s/1i38d23F" target="_blank" rel="external">百度网盘</a></li>
-<li>安装<code>.dmg</code>文件.</li>
-<li><p>安装Apple Java 6或者Oracle Java7/8.</p>
-<blockquote>
-<p><strong>注意:</strong> 对于Java 7/8用户来说，复制<code>/Applications/IntelliJ IDEA14.app/Contents/bin</code>下的<code>idea.properties</code>到<code>~/Library/Preferences/IntelliJ IDEA14</code>下；修改<code>idea.properties</code>中参数<code>JVMVersion</code>的值为<code>1.7*</code>或者<code>1.8*</code>。</p>
-</blockquote>
-</li>
-<li><p>启动.</p>
-</li>
-</ol>
-<h2 id="相关概念">相关概念</h2><h3 id="工程（Project）">工程（Project）</h3><blockquote>
-<p>A project is an organizational unit that represents a complete software solution.</p>
-</blockquote>
-<p><strong>目录格式</strong></p>
-<p><code>.idea</code>目录下包含一系列的XML格式的配置文件，例如：<code>comilper.xml</code> <code>encodings.xml</code> <code>modules.xml</code>根据命名代表工程的具体的功能的配置参数（名字、地址等）。</p>
-<p><code>worksapce.xml</code>保存了你的个人配置信息，包括你系统、VCS和历史设置的信息，这个文件不能被共享。</p>
-<p><strong>文件格式</strong></p>
-<p><code>.ipr</code>保存了核心的工程信息。</p>
-<p><code>.iws</code>保存了个人的工作空间设置，该文件类型不能被版本控制软件控制。</p>
-<h3 id="模块">模块</h3><blockquote>
-<p>A module is a discrete unit of functionality which you can compile, run, test and debug independently.</p>
-</blockquote>
-<p><code>.iml</code>模块文件存放一个模块的配置信息，被放置在一个<code>Content Root</code>下。可以被共享。</p>
+<h2 id="解答">解答</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Solution</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span>(<span class="params">String haystack, String needle</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">int</span> haystackindex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> needleindex = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(haystackindex &lt; haystack.length() &amp;&amp; needleindex &lt; needle.length())&#123;</span><br><span class="line">            <span class="keyword">if</span>(haystack.charAt(haystackindex) == needle.charAt(needleindex))&#123;</span><br><span class="line">                haystackindex++;</span><br><span class="line">                needleindex++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                haystackindex = haystackindex - needleindex + <span class="number">1</span>;</span><br><span class="line">                needleindex = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(needleindex &gt; needle.length() - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> haystackindex - needle.length();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注解">注解</h2><p>暴力匹配，没啥好说的，时间复杂度为 O(n*n)。</p>
 
       
     </div>
@@ -280,9 +259,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IntelliJ-IDEA/"> #IntelliJ IDEA </a>
+            <a href="/tags/code/"> #code </a>
           
-            <a href="/tags/tools/"> #tools </a>
+            <a href="/tags/leetcode/"> #leetcode </a>
           
         </div>
       
@@ -291,13 +270,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/23/每日一题-add-Binary/">每日一题:add Binary</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/22/iterm2-zsh-oh-my-zsh-配置/">iterm2+zsh+oh my zsh 配置</a>
+              <a href="/2015/07/30/我的日程安排-Taskpaper和Reminder/">我的日程安排-Taskpaper和Reminder</a>
             
           </div>
         </div>
@@ -317,8 +294,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/07/23/IntelliJ-IDEA14-教程/"
-               data-title="IntelliJ IDEA14 教程" data-url="http://yoursite.com/2015/07/23/IntelliJ-IDEA14-教程/">
+          <div class="ds-thread" data-thread-key="2015/07/30/每日一题-Implement-strStr/"
+               data-title="每日一题:Implement-strStr" data-url="http://yoursite.com/2015/07/30/每日一题-Implement-strStr/">
           </div>
         
       </div>
@@ -436,7 +413,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">1.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装篇"><span class="nav-number">2.</span> <span class="nav-text">安装篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">3.</span> <span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工程（Project）"><span class="nav-number">3.1.</span> <span class="nav-text">工程（Project）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块"><span class="nav-number">3.2.</span> <span class="nav-text">模块</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解答"><span class="nav-number">2.</span> <span class="nav-text">解答</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解"><span class="nav-number">3.</span> <span class="nav-text">注解</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
