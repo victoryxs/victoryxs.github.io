@@ -1,0 +1,768 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
+
+
+    <meta name="description" content="记录生活学习的点点滴滴" />
+
+
+
+  <meta name="keywords" content="Framework,Guice," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.3" />
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    analytics: {
+      google: ''
+    },
+    sidebar: 'post'
+  };
+</script>
+
+
+
+
+  <title> Guice框架学习 // Just a Blog But a Life </title>
+</head>
+
+<body>
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+<a href="https://github.com/victoryxs"><img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+
+    <!-- add Fork me on Github-->
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">Just a Blog But a Life</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<div class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            <i class="menu-item-icon icon-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook">
+            <i class="menu-item-icon icon-guestbook"></i> <br />
+            留言
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'pSUHpqMequv9Xi94-95s','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              Guice框架学习
+            
+          
+        </h1>
+      
+
+      
+      <div class="post-meta">
+        <span class="post-time">
+          发表于 2015-08-09
+        </span>
+
+        
+          <span class="post-category">
+            &nbsp; | &nbsp; 分类于
+            
+              <a href="/categories/Framework/">Framework</a>
+
+              
+              
+
+            
+          </span>
+        
+
+      <span class="post-count">
+      &nbsp; | &nbsp;字数1,804
+      </span>
+
+      <span id="busuanzi_container_page_pv">
+      &nbsp; | &nbsp; 热度<span id="busuanzi_value_page_pv"></span>°C
+      </span>
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/08/09/Guice框架学习/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/09/Guice框架学习/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+      
+
+    </div>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <h2 id="概念">概念</h2><ol>
+<li><p>UML类图常见关系(转载)</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/zxj159/p/3399654.html" target="_blank" rel="external">设计模式之UML类图的常见关系</a></p>
+</blockquote>
+<ul>
+<li><p>泛化关系(继承实现)</p>
+<p>泛化关系是继承和实现的关系。具体表现就是类和类的继承，接口和接口的继承以及类对接口的实现。</p>
+<p><img src="http://images.cnitblog.com/blog/362290/201310/31171722-c9602d76cfdf41f3a528648095c91401.png" alt="泛化关系"></p>
+</li>
+<li><p>依赖关系(局部调用)</p>
+<p>依赖关系表示为一个类使用另一个类，这种使用关系是具有偶然性的、临时性的、非常弱的，一个类的变化会影响到另一个类，是use a关系，如果类A依赖于类B,那么类B可以是类A的局部变量，或类A方法的参数，或静态方法的调用。</p>
+<p><img src="http://images.cnitblog.com/blog/362290/201310/31165559-4779e58a18e04d1da67a62a8c98cd63d.png" alt="依赖关系"></p>
+</li>
+<li><p>关联关系(全局调用)</p>
+<p>关联关系是一种强依赖关系，这种关系不存在依赖关系的偶然性，关系也不是临时的，是长期的，稳定的。双方的关系是平等的，可以单向关联也可以是双向关联。假如类A关联了类B,则类B是类A的全局变量（注意是全局变量，再看看上面的依赖关系），大多数关联都是单向关联，这比较容易维护，关于关联，在生活中我们常会说，类A持有类B的引用。</p>
+<p><img src="http://images.cnitblog.com/blog/362290/201310/31165613-3faec54ba2f94c589a43b224431a8fcc.png" alt="关联关系"></p>
+</li>
+<li><p>聚合关系(setter方法)</p>
+<p>聚合关系是特殊的关联关系，是一种强的关联关系，他体现的是整体与部分关系，即has-a的关系，但是整体和部分是可以分离的，注意，是可以分离的。普通关联关系的两个类处于同一层次上，是平级的，而聚合关系的两个类处于不同的层次，一个是整体，一个是部分。同时，是一种弱的“拥有”关系。体现的是A对象可以包含B对象，但B对象不是A对象的必要的组成部分。具体表现为，如果A由B聚合成，表现为A包含有B的全局对象，但是B对象可以不在A创建的时刻创建，这句话非常有意义，它在代码中通常体现成依赖注入的setter方法，即A对象可以随时创建B对象，再想想这不就体现了整体和部分是可以分离了吗？创建整体的时候可以不创建部分。</p>
+<p><img src="http://images.cnitblog.com/blog/362290/201310/31165626-ce36baaf7c2b44c9a997288184d65dd5.png" alt="聚合关系"></p>
+</li>
+<li><p>组合关系(构造器方法)</p>
+<p>组合关系也是特殊的关联关系，它体现一种contains a（拥有）关系，这种关系是比聚合还要强，也称为强聚合。体现了严格的整体和部分关系，两者是不可分割的，它们的生命周期是一致的。如果A由B组成，那么A就包含B的全局变量，并在创建A的同时创建B，在代码上我们通常是使用构造函数进行实现，也是依赖注入中构造函数的实现。</p>
+<p><img src="http://images.cnitblog.com/blog/362290/201310/31165647-2a0c584f1c5a4573a2b59f4ceceeee2b.png" alt="组合关系"></p>
+</li>
+<li><p>总结</p>
+<p>依赖和关联是Class A度Class B持有引用的关系，而聚合和组合关系是Class A拥有Class B的关系</p>
+<p>依赖和关联的区别在依赖是一种弱引用，而关联关系是一种强引用。具体的表现为：依赖关系为局部变量，而关联关系是全部变量</p>
+<p>聚合和组合的区别在聚合是一种弱拥有，而组合是一种强拥有。具体的表示为：setter方法是可用可不用的，而构造器方法是随着类的创建而创建的。</p>
+</li>
+</ul>
+</li>
+<li><p>DI(依赖注入)和IOC(控制反转)</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/zxj159/p/3425168.html" target="_blank" rel="external">设计模式之初识IoC/DI</a></p>
+</blockquote>
+<p> 简单点说就是IoC/DI容器通过构造方法、setter方法和接口方法将外部资源注入对象。</p>
+<ul>
+<li>参与对象：对象、IoC/DI容器、对象的外部资源</li>
+<li><p>创建过程：</p>
+<p><img src="http://images.cnitblog.com/blog/362290/201311/15131057-90c485a85176402293fc27fc8e5d1d2a.png" alt="创建过程"></p>
+</li>
+<li><p>创建形式：构造函数注入、setter方法注入、接口注入</p>
+<ul>
+<li><p>setter方法注入<br><img src="http://images.cnitblog.com/blog/362290/201310/31165626-ce36baaf7c2b44c9a997288184d65dd5.png" alt="setter方法注入"></p>
+</li>
+<li><p>构造函数注入<br><img src="http://images.cnitblog.com/blog/362290/201310/31165647-2a0c584f1c5a4573a2b59f4ceceeee2b.png" alt="构造函数注入"></p>
+</li>
+<li><p>接口注入</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">InjectFinder</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">injectFinder</span>(<span class="params">MovieFinder finder</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title">MovieLister</span>: <span class="title">InjectFinder</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> MovieFinder finder;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">injectFinder</span>(<span class="params">MovieFinder finder</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.finder = finder;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code><span class="blockquote">&gt; 名词解释</span>
+
+<span class="blockquote">&gt; 依赖注入是应用程序依赖于DI容器创建并注入它所需要的外部资源。</span>
+
+<span class="blockquote">&gt; 控制反转是IoC容器控制应用程序，反向地向应用程序注入其需要的外部资源。</span>
+</code></pre><h2 id="DI容器_Google_Guice">DI容器 Google Guice</h2><blockquote>
+<p>Google Guice (pronounced “juice”) is an open source software framework for the Java platform released by Google under the Apache License. It provides support for dependency injection using annotations to configure Java objects. Dependency injection is a design pattern whose core principle is to separate behavior from dependency resolution.</p>
+<p>Guice allows implementation classes to be bound programmatically to an interface, then injected into constructors, methods or fields using an <code>@Inject</code> annotation. When more than one implementation of the same interface is needed, the user can create custom annotations that identify an implementation, then use that annotation when injecting it.</p>
+<p>From Wikipedia Google Guice</p>
+</blockquote>
+<p>Google Guice是一个Google发布的基于Java平台的DI容器(框架)。它将实现类通过一个<code>Module</code>文件绑定在接口上，然后通过适用<code>@Inject</code>标签来实现构造器注入、方法注入和属性注入。</p>
+<p>相关介绍及其使用如下：</p>
+<p><a href="https://github.com/victoryxs/GuiceDemo/tree/master/src/main" target="_blank" rel="external">Guice Demo github</a></p>
+
+      
+    </div>
+
+    <div class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Framework/"> #Framework </a>
+          
+            <a href="/tags/Guice/"> #Guice </a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/01/KMP算法详解/">KMP算法详解</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </div>
+  </div>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+
+    
+      <div class="comments" id="comments">
+        
+          <div class="ds-thread" data-thread-key="2015/08/09/Guice框架学习/"
+               data-title="Guice框架学习" data-url="http://yoursite.com/2015/08/09/Guice框架学习/">
+          </div>
+        
+      </div>
+    
+  </div>
+
+
+        </div>
+
+        
+      </div>
+
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="victoryxs" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">victoryxs</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">记录生活学习的点点滴滴</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/victoryxs" target="_blank">Github</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/victoryxs" target="_blank">Twitter</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1628261543" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://macshuo.com/" target="_blank">MacTalk</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.waerfa.com/" target="_blank">Mac玩儿法</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://nikola.gitcafe.io/" target="_blank">nikola</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DI容器_Google_Guice"><span class="nav-number">2.</span> <span class="nav-text">DI容器 Google Guice</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2015
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">victoryxs</span>
+</div>
+
+<div class="copyright">
+ <span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+<iframe name="iframe_canvas" src="http://douban.fm/partner/baidu/doubanradio" scrolling="no" frameborder="0" width="0" height="0"></iframe> 
+</div>
+
+
+ <iframe name="iframe_canvas" src="http://douban.fm/partner/baidu/doubanradio" scrolling="no" frameborder="0" width="0" height="0"></iframe> 
+
+ 
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
+    <script type="text/javascript">
+      jQuery(function() {          
+          jQuery("#posts img").lazyload({
+            placeholder:"http://www.arao.me/loading.gif",
+              effect:"fadeIn",
+              threshold:200
+            });
+          });
+  </script>
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.3"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.3"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.3" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+    });
+  </script>
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"victoryxs"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+
+
+  
+  
+
+</body>
+</html>
