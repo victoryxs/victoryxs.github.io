@@ -24,7 +24,7 @@
 
 
 
-  <meta name="keywords" content="DesignPattern,Proxy," />
+  <meta name="keywords" content="［Hadoop,Work］," />
 
 
 
@@ -47,7 +47,7 @@
 
 
 
-  <title> Java 动态代理模式 // Just a Blog But a Life </title>
+  <title> Hadoop安装与配置 // Just a Blog But a Life </title>
 </head>
 
 <body>
@@ -189,7 +189,7 @@
           
           
             
-              Java 动态代理模式
+              Hadoop安装与配置
             
           
         </h1>
@@ -198,14 +198,14 @@
       
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-08-13
+          发表于 2015-10-04
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/DesignPattern/">DesignPattern</a>
+              <a href="/categories/Work/">Work</a>
 
               
               
@@ -215,7 +215,7 @@
         
 
       <span class="post-count">
-      &nbsp; | &nbsp;字数753
+      &nbsp; | &nbsp;字数2,276
       </span>
 
       <span id="busuanzi_container_page_pv">
@@ -226,8 +226,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/08/13/Java-动态代理模式/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/13/Java-动态代理模式/"></span>
+            <a href="/2015/10/04/Hadoop/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/04/Hadoop/"></span>
             </a>
           </span>
           
@@ -245,8 +245,94 @@
       
 
       
-        <p>首先我们看一段代码</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public <span class="keyword">interface</span> <span class="type">BusinessProcessor</span>&#123;</span><br><span class="line">    public <span class="type">void</span> processBusiness();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class <span class="type">BusinessProcessorImpl</span> implements <span class="type">BusinessProcessor</span>&#123;</span><br><span class="line">    public <span class="type">void</span> processBusiness()&#123;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"processing business..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.<span class="type">InvocationHandler</span>;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.<span class="type">Method</span>;</span><br><span class="line"></span><br><span class="line">public class <span class="type">BusinessProcessorHandler</span> implements <span class="type">InvocationHandler</span>&#123;</span><br><span class="line">    private <span class="type">Object</span> target = null;</span><br><span class="line">    </span><br><span class="line">    <span class="type">BusinessProcessorHandler</span>(<span class="type">Object</span> target)&#123;</span><br><span class="line">        this.target = target;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public <span class="type">Object</span> invoke(<span class="type">Object</span> proxy, <span class="type">Method</span> <span class="keyword">method</span>, <span class="type">Object</span>[] args) throws <span class="type">Throwable</span>&#123;</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"You can do something here before process your business"</span>);</span><br><span class="line">        <span class="type">Object</span> <span class="literal">result</span> = <span class="keyword">method</span>.invoke(target, args);</span><br><span class="line">        <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"You can do something here after process your business"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class <span class="type">Test</span> &#123;</span><br><span class="line">     public <span class="keyword">static</span> <span class="type">void</span> main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">         <span class="type">BusinessProcessorImpl</span> bpimpl = new <span class="type">BusinessProcessorImpl</span>();</span><br><span class="line">         <span class="type">BusinessProcessorHandler</span> handler = new <span class="type">BusinessProcessorHandler</span>(bpimpl);</span><br><span class="line">         <span class="type">BusinessProcessor</span> bp = (<span class="type">BusinessProcessor</span>)<span class="type">Proxy</span>.newProxyInstance(bpimpl.getClass().getClassLoader(),bpimpl.getClass().getInterfaces(), handler);</span><br><span class="line">         bp.processBusiness();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="hadoop安装指南">hadoop安装指南</h1><h2 id="VMware配置">VMware配置</h2><ol>
+<li><p>把自己的虚拟机实例网卡设置为NAT方式上网，不要选择桥接自动。</p>
+</li>
+<li><p>打开vmware。点击“编辑”菜单，选择网络编辑啥的。然后选择net8，也就是NAT。去掉DHCP那个checkbox, 并记下子网ip</p>
+<p> <img src="http://7xkgp0.com1.z0.glb.clouddn.com/15-10-3/29714382.jpg" alt="VMware配置"></p>
+</li>
+<li><p>点击NAT设置，记下网关</p>
+</li>
+<li><p>打开虚拟机 编辑网络连接 选择手动 填写ip 要和子网在一个网段内。 网关是NAT设置里的网关。DNS是自己电脑的DNS就可以了。</p>
+<p> <img src="http://7xkgp0.com1.z0.glb.clouddn.com/15-10-3/69295158.jpg" alt="Red Hat配置"></p>
+</li>
+<li><p>关闭防火墙   <code>chkconfig iptables off</code></p>
+</li>
+</ol>
+<h2 id="hostname和hosts的配置">hostname和hosts的配置</h2><ol>
+<li><p>通过<code>vi /etc/sysconfig/network</code>修改hostname</p>
+<p> <img src="http://7xkgp0.com1.z0.glb.clouddn.com/15-10-4/11647350.jpg" alt="hostname"></p>
+</li>
+<li><p>通过<code>vi /etc/hosts</code>，添加 Master、Slave1、Slave2的IP地址</p>
+<p> <img src="http://7xkgp0.com1.z0.glb.clouddn.com/15-10-4/58978306.jpg" alt="hosts"></p>
+</li>
+</ol>
+<h2 id="添加hadoop用户和用户组">添加hadoop用户和用户组</h2><ul>
+<li><p>创建Hadoop用户组：<code>groupadd hadoop</code></p>
+</li>
+<li><p>创建Hadoop用户：<code>useradd hadoop -g hadoop</code></p>
+</li>
+<li><p>设置Hadoop用户密码：<code>passwd   密码</code></p>
+</li>
+<li><p>给hadoop账户增加sudo权限： <code>vim /etc/sudoers</code> ，增加内容：<code>hadoop ALL=(ALL) ALL</code></p>
+</li>
+</ul>
+<h2 id="无密码登录ssh">无密码登录ssh</h2><ul>
+<li><p>切换到Hadoop 用户下：<code>su hadoop    cd /home/hadoop/</code></p>
+</li>
+<li><p>生成公钥和私钥：<code>ssh-keygen -q -t rsa -N &quot;&quot; -f /home/hadoop/.ssh/id_rsa</code></p>
+</li>
+<li><p>查看密钥内容：<code>cd /home/hadoop/.ssh   cat id_rsa.pub</code></p>
+</li>
+<li><p>复制id rsa.pub公钥到 authorized keys 文件：<code>cat id_rsa.pub &gt; authorized_keys</code></p>
+</li>
+<li><p>修改Master公钥权限：<code>chmod 644 /home/hadoop/.ssh/authorized_keys</code></p>
+</li>
+<li><p>把 Master 机器上的 authorized_keys 文件 copy 到 Slave1 节点上：<code>scp /home/hadoop/.ssh/authorized_keys Slave1.Hadoop:/home/hadoop/.ssh/</code>,如果Slave1/Slave2机器上没有.ssh目录，则创建，并<code>chmod 700 /home/hadoop/.ssh</code></p>
+</li>
+</ul>
+<blockquote>
+<p>note: Exception：Agent admitted failure to sign using the key.   Solution： <code>ssh-agent bash --login -i</code>和 <code>ssh-add ~/.ssh/id_rsa</code></p>
+</blockquote>
+<h2 id="安装hadoop">安装hadoop</h2><ol>
+<li><p>转到 home/hadoop目录：<code>cd /home/hadoop</code></p>
+</li>
+<li><p>下载hadoop：<code>wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-2.6.1/hadoop-2.6.1.tar.gz</code></p>
+</li>
+<li><p>解压hadoop并放到计划安装位置：<code>tar zxvf hadoop-2.6.1.tar.gz</code> </p>
+</li>
+<li><p>创建文件目录：<code>mkdir -p /home/hadoop/hadoop-2.6.1/dfs/name /home/hadoop/hadoop-2.6.1/dfs/data /home/hadoop/hadoop-2.6.1/tmp</code></p>
+</li>
+<li><p>修改7个配置文件，文件位置：<code>/home/hadoop/hadoop-2.6.1/etc/hadoop/</code>，文件名称：<code>hadoop-env.sh</code>、<code>yarn-env.sh</code>、<code>mapred-env.sh</code>、<code>slaves</code>、<code>core-site.xml</code>、<code>hdfs-site.xml</code>、<code>mapred-site.xml</code>、<code>yarn-site.xml</code></p>
+</li>
+<li><p>scp到对应的slave机器上 <code>scp -r /home/hadoop/hadoop-2.6.1 Slave1.Hadoop:~/</code>  <code>scp -r /home/hadoop/hadoop-2.6.1 Slave2.Hadoop:~/</code></p>
+</li>
+</ol>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#hadoop-env.sh</span></span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">7.0</span>_79</span><br><span class="line"></span><br><span class="line"><span class="comment">#mapred-env.sh</span></span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">7.0</span>_79</span><br><span class="line"></span><br><span class="line"><span class="comment">#yarn-env.sh</span></span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">7.0</span>_79</span><br><span class="line"></span><br><span class="line"><span class="comment">#slaves</span></span><br><span class="line">Slave1.Hadoop</span><br><span class="line">Slave2.Hadoop</span><br><span class="line"></span><br><span class="line"><span class="comment">#core-site.xml</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>fs.<span class="keyword">default</span>FS<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>hdfs://<span class="number">192.168</span>.<span class="number">109.10</span>:<span class="number">9000</span><span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>hadoop.tmp.dir<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>/home/hadoop/hadoop-<span class="number">2.6</span>.<span class="number">1</span>/tmp<span class="variable">&lt;/value&gt;</span></span><br><span class="line">    <span class="variable">&lt;description&gt;</span>Abase <span class="keyword">for</span> other temporary directories.<span class="variable">&lt;/description&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#hdfs-site.xml</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>dfs.namenode.secondary.http-address<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span><span class="number">192.168</span>.<span class="number">109.10</span>:<span class="number">50090</span><span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>dfs.namenode.name.dir<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>/home/hadoop/dfs/name<span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>dfs.datanode.data.dir<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>/home/hadoop/dfs/data<span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>dfs.replication<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span><span class="number">2</span><span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#mapred-site.xml</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>mapreduce.framework.name<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>yarn<span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#yarn-site.xml</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>yarn.resourcemanager.hostname<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>Master.Hadoop<span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br><span class="line"><span class="variable">&lt;property&gt;</span></span><br><span class="line">    <span class="variable">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="variable">&lt;/name&gt;</span></span><br><span class="line">    <span class="variable">&lt;value&gt;</span>mapreduce_shuffle<span class="variable">&lt;/value&gt;</span></span><br><span class="line"><span class="variable">&lt;/property&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动Hadoop">启动Hadoop</h2><ol>
+<li><p>切换到hadoop用户：<code>su hadoop</code></p>
+</li>
+<li><p>进入安装目录： <code>cd  ~/hadoop-2.6.1/</code></p>
+</li>
+<li><p>格式化namenode：<code>./bin/hdfs namenode –format</code></p>
+</li>
+<li><p>启动hdfs: <code>./sbin/start-dfs.sh</code></p>
+</li>
+<li><p>jps查看，此时master有进程：<code>NameNode</code> <code>SecondaryNameNode</code>，slave1/slave2上有进程：<code>DataNode</code> </p>
+</li>
+<li><p>启动yarn: <code>./sbin/start-yarn.sh</code></p>
+</li>
+<li><p>jps查看，此时master有进程：<code>NameNode</code> <code>SecondaryNameNode</code> <code>ResourceManager</code>，slave1/slave2上有进程：<code>DataNode</code> <code>NodeManager</code></p>
+</li>
+<li><p>查看集群状态：<code>./bin/hdfs dfsadmin -report</code></p>
+</li>
+<li><p>查看文件块组成：  <code>./bin/hdfs fsck / -files -blocks</code></p>
+</li>
+<li><p>Web查看HDFS:    <a href="http://192.168.109.10:50070" target="_blank" rel="external">Web查看HDFS</a></p>
+</li>
+<li><p>Web查看RM:    <a href="http://192.168.109.10:8088" target="_blank" rel="external">Web查看RM</a></p>
+</li>
+</ol>
 
       
     </div>
@@ -255,9 +341,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DesignPattern/"> #DesignPattern </a>
-          
-            <a href="/tags/Proxy/"> #Proxy </a>
+            <a href="/tags/［Hadoop-Work］/"> #［Hadoop,Work］ </a>
           
         </div>
       
@@ -290,8 +374,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/08/13/Java-动态代理模式/"
-               data-title="Java 动态代理模式" data-url="http://yoursite.com/2015/08/13/Java-动态代理模式/">
+          <div class="ds-thread" data-thread-key="2015/10/04/Hadoop/"
+               data-title="Hadoop安装与配置" data-url="http://yoursite.com/2015/10/04/Hadoop/">
           </div>
         
       </div>
@@ -352,7 +436,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -409,7 +493,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop安装指南"><span class="nav-number">1.</span> <span class="nav-text">hadoop安装指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VMware配置"><span class="nav-number">1.1.</span> <span class="nav-text">VMware配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hostname和hosts的配置"><span class="nav-number">1.2.</span> <span class="nav-text">hostname和hosts的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加hadoop用户和用户组"><span class="nav-number">1.3.</span> <span class="nav-text">添加hadoop用户和用户组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无密码登录ssh"><span class="nav-number">1.4.</span> <span class="nav-text">无密码登录ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hadoop"><span class="nav-number">1.5.</span> <span class="nav-text">安装hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Hadoop"><span class="nav-number">1.6.</span> <span class="nav-text">启动Hadoop</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
